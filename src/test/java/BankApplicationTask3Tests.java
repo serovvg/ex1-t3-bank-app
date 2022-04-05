@@ -16,7 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringJUnitConfig(locations = {"classpath:application-context.xml", "classpath:test-clients.xml"})
+@SpringJUnitConfig(locations = {"classpath:test-clients.xml"})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class BankApplicationTask3Tests {
@@ -57,16 +57,7 @@ public class BankApplicationTask3Tests {
 
     @BeforeEach
     public void init() {
-
-        try {
-            BankApplication.class.getMethod("initialize", ApplicationContext.class).invoke(null, applicationContext);
-        } catch (Exception e) {
-            e.printStackTrace();
-            // ignore
-        }
-
-        // TODO you can replace code above with this when will have the method
-//        BankApplication.initialize(applicationContext);
+        BankApplication.initialize(applicationContext);
     }
 
     @Test
